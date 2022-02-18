@@ -1,0 +1,12 @@
+--ignore-directory=node_modules
+--ignore-directory=.cache
+--ignore-directory=dist
+--ignore-directory=.dist
+--ignore-directory=.meteor
+--ignore-directory=.git
+--ignore-directory=vendor
+--ignore-directory=.parcel-cache
+--ignore-file=is:package-lock.json
+--ignore-file=is:yarn.lock
+--ignore-file=ext:svg
+--ignore-file=ext:.min.js

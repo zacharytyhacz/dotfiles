@@ -1,0 +1,30 @@
+[user]                                                                                               
+  email = zactyh@gmail.com                                                                           
+  name = zacharytyhacz                                                                               
+  signingkey = 603406D9462A3C901F821F97C6FD36D9C219B085                                                                      
+                                                                                                     
+[commit]                                                                                             
+  gpgsign = true                                                                                     
+                                                                                                     
+[pull]                                                                                               
+  rebase = false                                                                                     
+                                                                                                     
+[pager]                                                                                              
+    diff = delta                                                                                     
+    log = delta                                                                                      
+    reflog = delta                                                                                   
+    show = delta                                                                                     
+                                                                                                     
+[delta] plus-style = "syntax #012800"                                                                
+    minus-style = "syntax #340001"                                                                   
+    syntax-theme = DarkNeon                                                                          
+    navigate = true                                                                                  
+    side-by-side = true                                                                              
+                                                                                                     
+[interactive]                                                                                        
+    diffFilter = delta --color-only
+
+[gpg]
+	program = /opt/homebrew/bin/gpg
+[core]
+	excludesFile = ~/.gitignore
