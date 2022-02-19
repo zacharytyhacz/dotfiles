@@ -13,6 +13,9 @@
 - [`rofi`](https://github.com/davatorium/rofi)
 - [`feh`](https://feh.finalrewind.org/)
 
+![image](https://user-images.githubusercontent.com/38140593/154784476-180db037-2bfe-4cee-bd9d-ac25435050d2.png)
+
+
 ### MacOS Programs
 - [`iterm2`](https://iterm2.com/)
 - `tmux`
