@@ -10,6 +10,8 @@
 - [`urxvt`](https://linux.die.net/man/1/urxvt)
 - [`i3`](https://i3wm.org/)
 - [`polybar`](https://polybar.github.io/)
+- [`rofi`](https://github.com/davatorium/rofi)
+- [`feh`](https://feh.finalrewind.org/)
 
 ### MacOS Programs
 - [`iterm2`](https://iterm2.com/)
