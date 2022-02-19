@@ -6,6 +6,7 @@
 - `bash`
 - [`ack`](https://beyondgrep.com/)
 - [`exa`](https://the.exa.website/)
+- [`delta`](https://github.com/dandavison/delta) ( git diff )
 
 ### Linux Programs
 - [`urxvt`](https://linux.die.net/man/1/urxvt)
