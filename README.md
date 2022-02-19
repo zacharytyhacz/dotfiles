@@ -1,5 +1,6 @@
 # Zachary Tyhacz dot files
 
+### Universal Programs
 - `vim`
 - `git`
 - `bash`
