@@ -1,5 +1,3 @@
-filetype plugin indent on
-
 set background=dark
 syntax on
 set encoding=utf-8
@@ -18,7 +16,6 @@ set autoindent
 set smartindent
 
 
-
 " searching
 set hlsearch
 set incsearch
@@ -35,10 +32,9 @@ set hidden
 
 
 " minimum window buffer width
-set winwidth=100
+set winwidth=60
 
 
-" 100 character line guide
 set colorcolumn=121
 
 
@@ -56,8 +52,6 @@ set sidescroll=8
 
 
 " prevents macro recording crap
-nnoremap Q <esc> 
-nnoremap q <esc> 
 nnoremap K k
 
 
@@ -93,10 +87,9 @@ command D !clear && git diff %:p
 " git blame of current file
 command B !clear && git blame %:p --color-by-age --date=relative
 
-" toggle showing of color column ( 100 character helper )
-command C set colorcolumn=101
-
 command VRC tabe ~/.vimrc
+
+command MKDIR !mkdir -p %:h
 
 
 " whitespace characters on :set list
@@ -121,9 +114,9 @@ let g:netrw_sizestyle="H"
 
 
 " tabbing. 4 spaces as one tab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set matchpairs+=<:>
 
@@ -143,11 +136,15 @@ au BufRead,BufNewFile *.hbs set syntax=html
 au BufRead,BufNewFile *.svelte set syntax=html
 au BufRead,BufNewFile .env set syntax=sh
 au BufRead,BufNewFile .env.example set syntax=sh
+au BufRead,BufNewFile .env.local set syntax=sh
+au BufRead,BufNewFile *.zac set syntax=markdown
 
 
 " set certain tab settings based on project
 autocmd BufNewFile,BufRead /Users/zact/Projects/EP/* set tabstop=4 shiftwidth=4 softtabstop=4
-retab
+autocmd BufNewFile,BufRead /Users/zact/Projects/anza/* set colorcolumn=101
+autocmd BufNewFile,BufRead /Users/zact/Projects/upfuze/* set tabstop=2 shiftwidth=2 softtabstop=2
+autocmd BufNewFile,BufRead /Users/zact/Projects/ask.io/* set tabstop=2 shiftwidth=2 softtabstop=2
 
 
 " keep undo history
@@ -163,15 +160,18 @@ augroup templates
 augroup END
 
 
-" plugins 
+ "plugins 
 call plug#begin()
 Plug 'pangloss/vim-javascript'                  " js support 
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " more autocompletition
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'w0rp/ale'                                 " linting
-"Plug 'junegunn/goyo.vim'                        " zen mode
-"Plug 'Yggdroot/indentLine'                      " indenting help
+Plug 'w0rp/ale'
+Plug 'tanvirtin/vgit.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'pwntester/octo.nvim'
 call plug#end()
 
 " CoC extensions
@@ -234,12 +234,13 @@ highlight TabLine ctermbg=black ctermfg=green
 highlight TabLineSel ctermbg=green ctermfg=black
 highlight TabLineFill ctermbg=red ctermfg=black
 
+
 " window status line highlighting
 "highlight StatusLine ctermbg=NONE ctermfg=green
 highlight StatusLine cterm=NONE ctermfg=black ctermbg=white
 highlight StatusLineNC cterm=NONE ctermfg=black ctermbg=white
 
-highlight ColorColumn cterm=NONE ctermbg=white
+highlight ColorColumn cterm=NONE ctermbg=blue
 
 
 " vimdiff
@@ -248,41 +249,15 @@ highlight DiffDelete cterm=NONE ctermfg=0 ctermbg=1
 highlight DiffChange cterm=NONE ctermfg=0 ctermbg=6
 highlight DiffText   cterm=NONE ctermfg=0 ctermbg=6
 
-function MyTabLabel(n)
-    let buflist = tabpagebuflist(a:n)
-    let winnr = tabpagewinnr(a:n)
-    return bufname(buflist[winnr - 1])
-endfunction
-
-function MyTabLine()
-    let s = ''
-    for i in range(tabpagenr('$'))
-        " select the highlighting
-        if i + 1 == tabpagenr()
-            let s .= '%#TabLineSel#'
-        else
-            let s .= '%#TabLine#'
-        endif
-
-        " set the tab page number (for mouse clicks)
-        let s .= '%' . (i + 1) . 'T'
-
-        " the label is made by MyTabLabel()
-        let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
-    endfor
-
-    " after the last tab fill with TabLineFill and reset tab page nr
-    let s .= '%#TabLineFill#%T'
-
-    return s
-endfunction
-
-set tabline=%!MyTabLine()
-
-
-
-
 set backspace=indent,eol,start
 
 hi StatusLine                  ctermfg=0     ctermbg=2     cterm=NONE
 hi StatusLineNC                ctermfg=0     ctermbg=4     cterm=NONE
+
+
+"nnoremap <C-h> :tabprevious<CR>
+"
+"nnoremap <C-l>   :tabnext<CR>
+
+nnoremap <C-t>     :tabnew .<CR>
+inoremap <C-t>     <Esc>:tabnew .<CR>
